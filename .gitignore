@@ -1,0 +1,27 @@
+# Local terraform state (never commit this)
+*.tfstate
+*.tfstate.backup
+*.tfstate.lock.info
+
+# Lock file created by use_lockfile = true
+*.tflock
+
+# Terraform working directory
+.terraform/
+.terraform.lock.hcl
+
+# Variable files (may contain secrets like your IP, key names)
+*.tfvars
+*.tfvars.json
+
+# Crash logs
+crash.log
+crash.*.log
+
+# SSH keys if you ever generate them locally
+*.pem
+*.key
+
+# OS noise
+.DS_Store
+Thumbs.db
