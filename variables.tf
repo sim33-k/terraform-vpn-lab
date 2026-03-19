@@ -32,3 +32,8 @@ variable "your_ip" {
   description = "Your local machine IP in CIDR notation e.g. 203.0.113.5/32"
   type        = string
 }
+
+variable "ami_id" {
+  description = "AMI ID to use for all instances"
+  type        = string
+}
