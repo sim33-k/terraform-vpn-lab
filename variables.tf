@@ -48,3 +48,9 @@ variable "vpn_client_cidr" {
   type        = string
   default     = "10.10.0.0/24"
 }
+
+variable "openvpn_client_cidr" {
+  description = "CIDR used by OpenVPN VPN clients"
+  type        = string
+  default     = "10.20.0.0/24"
+}

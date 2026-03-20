@@ -8,7 +8,7 @@ output "private_instance_ip" {
   value       = module.wireguard.private_instance_ip
 }
 
-# output "openvpn_public_ip" {
-#   description = "Public IP to SSH into the OpenVPN server"
-#   value       = module.openvpn.openvpn_public_ip
-# }
+output "openvpn_public_ip" {
+  description = "Public IP to SSH into the OpenVPN server"
+  value       = module.openvpn.openvpn_public_ip
+}

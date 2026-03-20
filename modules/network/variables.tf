@@ -23,6 +23,11 @@ variable "vpn_client_cidr" {
   type        = string
 }
 
+variable "openvpn_client_cidr" {
+  description = "CIDR used by OpenVPN VPN clients"
+  type        = string
+}
+
 variable "your_ip" {
   description = "Your local machine IP in CIDR notation"
   type        = string

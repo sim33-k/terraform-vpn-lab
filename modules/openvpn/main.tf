@@ -14,6 +14,7 @@ resource "aws_instance" "openvpn" {
   instance_type          = var.instance_type
   subnet_id              = var.public_subnet_id
   key_name               = var.key_pair_name
+  source_dest_check      = false
   vpc_security_group_ids = [var.openvpn_sg_id]
 
   user_data = file("${path.root}/scripts/openvpn.sh")
