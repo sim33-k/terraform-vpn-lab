@@ -1,5 +1,5 @@
 variable "ami_id" {
-  description = "AMI ID to use for all instances"
+  description = "AMI ID to use for the instance"
   type        = string
 }
 
@@ -18,17 +18,7 @@ variable "public_subnet_id" {
   type        = string
 }
 
-variable "private_subnet_id" {
-  description = "ID of the private subnet"
-  type        = string
-}
-
-variable "wireguard_sg_id" {
-  description = "Security group ID for the WireGuard instance"
-  type        = string
-}
-
-variable "private_sg_id" {
-  description = "Security group ID for the private instance"
+variable "openvpn_sg_id" {
+  description = "Security group ID for the OpenVPN instance"
   type        = string
 }

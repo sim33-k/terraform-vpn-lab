@@ -14,16 +14,17 @@ resource "aws_instance" "wireguard" {
   instance_type          = var.instance_type
   subnet_id              = var.public_subnet_id
   key_name               = var.key_pair_name
+  source_dest_check      = false
   vpc_security_group_ids = [var.wireguard_sg_id]
 
-  user_data = file("${path.root}/scripts/wireguard-setup.sh")
+  user_data = file("${path.root}/scripts/wireguard.sh")
 
   tags = {
     Name = "wireguard-server"
   }
 }
 
-# Private Instance (Private Subnet)
+# Private Instance for testing (Private Subnet)
 resource "aws_instance" "private" {
   ami                    = var.ami_id
   instance_type          = var.instance_type

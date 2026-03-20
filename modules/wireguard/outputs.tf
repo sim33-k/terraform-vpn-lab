@@ -8,6 +8,11 @@ output "wireguard_instance_id" {
   value       = aws_instance.wireguard.id
 }
 
+output "wireguard_primary_network_interface_id" {
+  description = "Primary network interface ID of the WireGuard server"
+  value       = aws_instance.wireguard.primary_network_interface_id
+}
+
 output "private_instance_id" {
   description = "Instance ID of the private server"
   value       = aws_instance.private.id

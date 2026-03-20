@@ -24,16 +24,27 @@ variable "instance_type" {
 }
 
 variable "key_pair_name" {
-  description = "Name of the existing AWS key pair for SSH access"
+  description = "Name of the existing AWS EC2 key pair for SSH access (for example: mumbai, not mumbai.pem)"
   type        = string
+
+  validation {
+    condition     = !endswith(var.key_pair_name, ".pem")
+    error_message = "key_pair_name must be the EC2 key pair name, not a local .pem file name."
+  }
 }
 
 variable "your_ip" {
-  description = "Your local machine IP in CIDR notation e.g. 203.0.113.5/32"
+  description = "Your local machine IP in CIDR notation e.g. 203.94.83.86/32"
   type        = string
 }
 
 variable "ami_id" {
   description = "AMI ID to use for all instances"
   type        = string
+}
+
+variable "vpn_client_cidr" {
+  description = "CIDR used by WireGuard VPN clients"
+  type        = string
+  default     = "10.10.0.0/24"
 }

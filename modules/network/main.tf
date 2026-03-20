@@ -124,6 +124,22 @@ resource "aws_security_group" "private" {
     cidr_blocks = [var.vpc_cidr]
   }
 
+  ingress {
+    description = "SSH from WireGuard clients"
+    from_port   = 22
+    to_port     = 22
+    protocol    = "tcp"
+    cidr_blocks = [var.vpn_client_cidr]
+  }
+
+  ingress {
+    description = "ICMP from WireGuard clients"
+    from_port   = -1
+    to_port     = -1
+    protocol    = "icmp"
+    cidr_blocks = [var.vpn_client_cidr]
+  }
+
   egress {
     from_port   = 0
     to_port     = 0
@@ -133,5 +149,39 @@ resource "aws_security_group" "private" {
 
   tags = {
     Name = "private-instance-sg"
+  }
+}
+
+# Security Group — OpenVPN instance (public)
+resource "aws_security_group" "openvpn" {
+  name        = "openvpn-sg"
+  description = "Allow OpenVPN UDP and SSH from my IP"
+  vpc_id      = aws_vpc.main.id
+
+  ingress {
+    description = "SSH from my IP only"
+    from_port   = 22
+    to_port     = 22
+    protocol    = "tcp"
+    cidr_blocks = [var.your_ip]
+  }
+
+  ingress {
+    description = "OpenVPN VPN"
+    from_port   = 1194
+    to_port     = 1194
+    protocol    = "udp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  tags = {
+    Name = "openvpn-sg"
   }
 }

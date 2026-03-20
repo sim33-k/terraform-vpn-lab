@@ -18,6 +18,11 @@ variable "private_subnet_cidr" {
   type        = string
 }
 
+variable "vpn_client_cidr" {
+  description = "CIDR used by WireGuard VPN clients"
+  type        = string
+}
+
 variable "your_ip" {
   description = "Your local machine IP in CIDR notation"
   type        = string
